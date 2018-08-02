@@ -2,3 +2,5 @@
 *.db
 Vagrantfile
 *.sh
+.python-version
+.vscode
