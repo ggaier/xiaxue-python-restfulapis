@@ -26,13 +26,20 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 app = Flask(__name__)
 
+
 @app.route('/restaurants', methods = ['GET', 'POST'])
 def all_restaurants_handler():
   #YOUR CODE HERE
+  if request.method == 'GET':
+    restaurants = session.query(Restaurant).all()
+    return jsonify(restaurants=[i.serialize for i in restaurants])
+  elif request.method == 'POST':
+    location = request.args.get('location', "")
     
 @app.route('/restaurants/<int:id>', methods = ['GET','PUT', 'DELETE'])
 def restaurant_handler(id):
   #YOUR CODE HERE
+  
 
 if __name__ == '__main__':
     app.debug = True
